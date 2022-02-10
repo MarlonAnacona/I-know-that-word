@@ -1,6 +1,8 @@
 
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +21,11 @@ public class GUI extends JFrame {
     private JTextArea areaTexto;
     private FileManager fileManager;
     private Escucha escucha;
+    private Canvas canvas;
+    private Font font;
+    private JPanel palabras,botones;
     private Diccionario palabra;
-
+    private JButton jugar,ayuda,salir,si,no;
 
     /**
      * Constructor of GUI class
@@ -30,7 +35,7 @@ public class GUI extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("FilesManager app");
-        this.setSize(500,200);
+        this.setSize(500,400);
         //this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -56,11 +61,26 @@ public class GUI extends JFrame {
         texto.addActionListener(escucha);
         add(texto,BorderLayout.SOUTH);
         areaTexto = new JTextArea(10,30);
+        areaTexto.setOpaque(false);
         areaTexto.setText(palabra.getFrase());
-        JScrollPane scroll = new JScrollPane(areaTexto);
-        this.add(scroll,BorderLayout.CENTER);
+        palabras = new JPanel();
+
+        canvas = new Canvas();
+        canvas.setFocusable(true);
+        add(canvas,BorderLayout.CENTER);
+
+        botones=new JPanel();
+        jugar=new JButton("JUGAR");
+        ayuda=new JButton("AYUDA");
+        botones.add(jugar);
+        botones.add(ayuda);
+        this.add(botones, BorderLayout.SOUTH);
+
+
 
     }
+
+
 
     /**
      * Main process of the Java program
@@ -79,7 +99,7 @@ public class GUI extends JFrame {
     private class Escucha implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-           // ileManager.escribirTexto(texto.getText());
+
             areaTexto.setText(palabra.getFrase());
         }
     }

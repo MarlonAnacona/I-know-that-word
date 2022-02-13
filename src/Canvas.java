@@ -21,12 +21,15 @@ public class Canvas extends JPanel {
 
 
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         g.setFont(font);
 
         switch (step){
-            case 1: g.setColor(Color.RED);
+            case 1:
+
+                g.setColor(Color.RED);
                 g.drawString( this.palabra.getFrase(),150,150);
                 g.drawLine(150,155, 320,155);
                     break;
@@ -59,6 +62,15 @@ public class Canvas extends JPanel {
                     g.drawString("The End!!",50,22);
                     break;
         }
+    }
+
+    public void conteo(Graphics g,int contador){
+        super.paintComponent(g);
+        g.setFont(font);
+        String segundo=""+contador;
+                g.setColor(Color.RED);
+                g.drawString( segundo,150,150);
+                g.drawLine(150,155, 320,155);
     }
 
 }

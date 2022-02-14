@@ -33,6 +33,12 @@ public class modelWord {
         }
     }
 
+    public void setPalabrasEnNivel(String palabrarecibida){
+
+        palabrasNivel.add(palabrarecibida);
+        System.out.println(palabrasNivel);
+    }
+
    /* public String getPalabrasNivel(){
         if (flagNivel<palabrasNivel.size()){
             palabraAMostrar=palabrasNivel.get(flagNivel);

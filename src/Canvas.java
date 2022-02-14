@@ -10,7 +10,7 @@ public class Canvas extends JPanel {
     public Canvas(){
         setBackground(Color.LIGHT_GRAY);
         font = new Font(Font.DIALOG,Font.BOLD,27);
-        step=1;
+        step=2;
 
     }
 
@@ -25,17 +25,16 @@ public class Canvas extends JPanel {
 
         super.paintComponent(g);
         g.setFont(font);
+        switch (step) {
 
-        switch (step){
-            case 1:
-
+            case 1: g.setColor(Color.RED);
+            g.drawString( this.palabra.getFrase(),150,150);
+            g.drawLine(150,155, 320,155);
+        break;
+            case 2:
                 g.setColor(Color.RED);
-                g.drawString( this.palabra.getFrase(),150,150);
+                g.drawString( "BIENVENIDO",150,150);
                 g.drawLine(150,155, 320,155);
-                    break;
-            case 2: g.setColor(Color.RED);
-                    g.drawString("Draw Lines",20,22);
-                    g.drawLine(5,30, 380,30);
                     break;
             case 3:g.setColor(Color.CYAN);
                    g.drawString("Draw Rect",20,22);
@@ -61,7 +60,8 @@ public class Canvas extends JPanel {
             default:g.setColor(Color.BLUE);
                     g.drawString("The End!!",50,22);
                     break;
-        }
+
+    }
     }
 
     public void conteo(Graphics g,int contador){
@@ -73,4 +73,8 @@ public class Canvas extends JPanel {
                 g.drawLine(150,155, 320,155);
     }
 
+   public void setStep(int step){
+        this.step=step;
+
+   }
 }

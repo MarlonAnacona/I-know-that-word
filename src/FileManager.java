@@ -80,7 +80,9 @@ public class FileManager {
             }
 
         }
-        if(usuarioBuscado==linea){
+        System.out.println(usuarioBuscado);
+        System.out.println(linea);
+        if(usuarioBuscado.equals(linea)){
 
         }else{
             try {
@@ -140,5 +142,25 @@ public class FileManager {
 
        }
 
+  public void ModificarNivel() throws IOException {
+      BufferedReader br = new BufferedReader(new FileReader("src/files/Usuarios.txt"));
 
+      fileWriter = new FileWriter("src/files/Usuarios.txt",true);
+
+      PrintWriter pw = new PrintWriter(fileWriter);
+
+      String line = null;
+      String linearemove="marlon;1";
+      //Read from the original file and write to the new
+      //unless content matches data to be removed.
+      while ((line = br.readLine()) != null) {
+
+          if (!line.trim().equals(linearemove)) {
+
+              pw.println(line);
+              pw.flush();
+          }
+      } pw.close();
+      br.close();
+}
 }

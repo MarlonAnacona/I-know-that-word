@@ -1,13 +1,9 @@
 
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.Random;
 
@@ -29,6 +25,8 @@ public class GUI extends JFrame {
     private Font font;
     private JPanel palabras,botones;
     private Diccionario palabra;
+    private JLabel fondo;
+    private ImageIcon fondoimagen;
     private JButton jugar,ayuda,salir,si,no;
 
     /**
@@ -40,11 +38,23 @@ public class GUI extends JFrame {
         //Default JFrame configuration
         this.setTitle("FilesManager app");
         this.setSize(500,400);
-        //this.pack();
+       /* fondoimagen=new ImageIcon(getClass().getResource("/resources/fondo1.jpg"));
+        fondo=new JLabel(fondoimagen);
+        *///this.pack();
         this.setResizable(true);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      /*  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        this.getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );*/
     }
 
     /**
@@ -54,6 +64,7 @@ public class GUI extends JFrame {
     private void initGUI() throws IOException {
 
         fileManager =new FileManager();
+        //fileManager.ModificarNivel();
         nombreUsario=JOptionPane.showInputDialog("Ingrese su usuario");
         fileManager.escribirUsuario(nombreUsario);
         fileManager.buscarNivelUsuario(nombreUsario);
@@ -71,6 +82,7 @@ public class GUI extends JFrame {
         palabras = new JPanel();
 
         canvas = new Canvas();
+
         canvas.setFocusable(true);
         add(canvas,BorderLayout.CENTER);
 
@@ -84,6 +96,7 @@ public class GUI extends JFrame {
 
         jugar.addActionListener(escucha);
         //initTimer.setVisible(false);
+
          iniciar = new Timer(1000,escucha);
         timer = new Timer(5000,escucha);
 
@@ -137,7 +150,6 @@ public class GUI extends JFrame {
             if(e.getSource()==iniciar){
 
                 counter2++;
-
                 canvas.conteo(getGraphics(),counter2);
                 if(counter2<=4){
 
@@ -154,7 +166,7 @@ public class GUI extends JFrame {
             if(e.getSource()==timer){
 
                 counter++;
-
+                canvas.setStep(1);
                 canvas.paintComponent(getGraphics());
                 if(counter<=7){
 

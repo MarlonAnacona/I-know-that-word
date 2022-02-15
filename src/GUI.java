@@ -64,8 +64,10 @@ public class GUI extends JFrame {
     private void initGUI() throws IOException {
 
         fileManager =new FileManager();
-        //fileManager.ModificarNivel();
+
         nombreUsario=JOptionPane.showInputDialog("Ingrese su usuario");
+        setNombreUsuario(nombreUsario);
+        fileManager.subirNivel();
         fileManager.escribirUsuario(nombreUsario);
         fileManager.buscarNivelUsuario(nombreUsario);
 
@@ -108,6 +110,13 @@ public class GUI extends JFrame {
 
 
 
+    private String setNombreUsuario(String nombreUsario1){
+        nombreUsario=nombreUsario1;
+        return  nombreUsario;
+    }
+    public static String getNombreUsario(){
+        return nombreUsario;
+    }
     /**
      * Main process of the Java program
      * @param args Object used in order to send input data from command line when
@@ -148,7 +157,6 @@ public class GUI extends JFrame {
             }
 
             if(e.getSource()==iniciar){
-
                 counter2++;
                 canvas.conteo(getGraphics(),counter2);
                 if(counter2<=4){
@@ -162,13 +170,12 @@ public class GUI extends JFrame {
 
             }
 
-
             if(e.getSource()==timer){
 
                 counter++;
                 canvas.setStep(1);
                 canvas.paintComponent(getGraphics());
-                if(counter<=7){
+                if(counter<=9){
 
                 }else{
                     timer.stop();

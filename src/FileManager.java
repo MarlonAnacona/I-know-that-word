@@ -2,15 +2,48 @@
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileManager {
     private FileReader fileReader;
     private BufferedReader input;
-    private FileWriter fileWriter;
-    private BufferedWriter output;
+    private FileWriter fileWriter,fileWriter2;
+    private BufferedWriter output,output2;
+    private int nivel;
     public  static boolean  registrado;
+    private List<String> listaPalabras;
+    private List<String> palabrasEscogidas;
+    private List<String> lista;
+    private List<Integer> listaUsuarios;
+    private static final int serie = 2;
+    private String usuarioPrincipal,palabra;
+    private FileReader fileRead,usuariosRead,nivelUsuariosRead;
+    private BufferedReader input2,input3;
 
 
+
+    public FileManager() {
+        try {
+            listaPalabras = new ArrayList<String>();
+            palabrasEscogidas = new ArrayList<String>();
+            lista = new ArrayList<String>();
+            usuariosRead = new FileReader("src/files/Usuarios.txt");
+            input = new BufferedReader(usuariosRead);
+            String texto = null;
+            int number = 0;
+            texto = input.readLine();
+            while(texto!=null) {
+                lista.add(texto);
+                texto = input.readLine();
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public ArrayList<String>lecturaFile() {
         ArrayList <String>frases=new ArrayList<>();
@@ -142,25 +175,37 @@ public class FileManager {
 
        }
 
-  public void ModificarNivel() throws IOException {
-      BufferedReader br = new BufferedReader(new FileReader("src/files/Usuarios.txt"));
+    public void subirNivel() throws IOException {
 
-      fileWriter = new FileWriter("src/files/Usuarios.txt",true);
+        if(nivel==5){
+        }else{
+            ArrayList<String> nombreUsuario= new ArrayList<String>();
+            nombreUsuario=lecturaUsuario();
 
-      PrintWriter pw = new PrintWriter(fileWriter);
 
-      String line = null;
-      String linearemove="marlon;1";
-      //Read from the original file and write to the new
-      //unless content matches data to be removed.
-      while ((line = br.readLine()) != null) {
+            try {
+                fileWriter2 = new FileWriter("src/files/Usuarios.txt",false);
+                output2= new BufferedWriter(fileWriter2);
+                output2.write("");
+                output2.close();
+                for(int i=0;i<lista.size();i++){
+                    fileWriter = new FileWriter("src/files/Usuarios.txt",true);
+                    output= new BufferedWriter(fileWriter);
 
-          if (!line.trim().equals(linearemove)) {
+                    if(lista.get(i).substring(0, nombreUsuario.get(i).lastIndexOf(";")).equalsIgnoreCase(GUI.getNombreUsario())){
+                        String nombreUsu=lista.get(i).substring(0, nombreUsuario.get(i).lastIndexOf(";"));
+                        nivel=Integer.parseInt(lista.get(i).substring(nombreUsuario.get(i).lastIndexOf(";")+1));
+                        nivel=nivel+1;
+                        lista.set(i, nombreUsu+";"+nivel);
+                    }
+                    output.write(String.valueOf(lista.get(i)));
+                    output.newLine();
+                    output.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-              pw.println(line);
-              pw.flush();
-          }
-      } pw.close();
-      br.close();
-}
+    }
 }

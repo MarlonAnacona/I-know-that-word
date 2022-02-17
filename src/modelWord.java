@@ -1,20 +1,22 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 public class modelWord {
     private int nivelActual,palabrasEnNivel;
     private Double porcentajeAciertos;
-    ArrayList<String> palabrasNivel= new ArrayList<>() ;
-    ArrayList<String> palabrasCiertas= new ArrayList<>() ;
-    ArrayList<String> palabrastotalesNivel= new ArrayList<>() ;
 
+    private ArrayList<String> palabrasQueHanSalido = new ArrayList<>() ;
+    ArrayList<String> palabrasCiertas= new ArrayList<>() ;
+
+    private static  ArrayList<String> palabrasCalificar2= new ArrayList<>() ;
 
 
     public void setPalabrasEnNivel(String palabrarecibida){
 
-        palabrasNivel.add(palabrarecibida);
-System.out.println(palabrasNivel);
+        palabrasQueHanSalido.add(palabrarecibida);
+System.out.println(palabrasQueHanSalido);
     }
+
 
     public int setNivelActual(int nivel){
         nivelActual=nivel;;
@@ -69,37 +71,22 @@ System.out.println(palabrasNivel);
         boolean fallo= true;
         int cantidadTotal = palabrasEnNivel-aciertos;
 
-        for(int i=0;i<palabrasNivel.size();i++){
-            if(palabrasNivel.get(i).equalsIgnoreCase(palabraEscrita)) {
+        for(int i = 0; i< palabrasQueHanSalido.size(); i++){
+            if(palabrasQueHanSalido.get(i).equalsIgnoreCase(palabraEscrita)) {
                 if(i>=cantidadTotal){
                 }else{
-                    palabrasNivel.remove(i);
+                    palabrasQueHanSalido.remove(i);
                     fallo= false;
                 }
             }
         }
         return fallo;
     }
-   /* public String getPalabrasNivel(){
-        if (flagNivel<palabrasNivel.size()){
-            palabraAMostrar=palabrasNivel.get(flagNivel);
-            flagNivel++;
-        }else{
-            setNivelesAprobados();
-            palabraAMostrar="";
-        }
-        return palabraAMostrar;
-    }
-    public int  getAciertos(){
-        return aciertos;
-    }
-    public int getNivelActual() {
-        return nivelActual;
-    }
-    public int getPorcentajeNivel(){
-        setPorcentajeAciertos();
-        return (int) Math.ceil(palabrasEnNivel * porcentajeAciertos);
-    }
-    */
+
+
+
+
+
+
 
 }

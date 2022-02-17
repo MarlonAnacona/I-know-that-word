@@ -6,13 +6,18 @@ public class Canvas extends JPanel {
     private Font font;
     private int step;
     public static String palabraQueSalio;
+    public static int i;
     private  Diccionario palabra=new Diccionario();
-
+    private  modelWord palabraACalificar=new modelWord();
     public Canvas(){
         setBackground(Color.LIGHT_GRAY);
         font = new Font(Font.DIALOG,Font.BOLD,27);
         step=2;
 
+    }
+    public int setI(int i){
+        this.i=i;
+        return this.i;
     }
 
     public void dibujarParte(){
@@ -49,10 +54,10 @@ public class Canvas extends JPanel {
                    g.draw3DRect(5,100,90,55,true);
                    g.fill3DRect(100,100,90,55,false);
                    break;
-            case 4:g.setColor(Color.YELLOW);
-                   g.drawString("Draw Ovals",20,22);
-                   g.drawOval(195,100,90,55);
-                   g.fillOval(290,100,90,55);
+            case 4:g.setColor(Color.RED);
+                palabraQueSalio=this.palabra.getfraseMostrar(i);
+                g.drawString(palabraQueSalio,150,150);
+                g.drawLine(150,155, 320,155);
                    break;
             case 5:g.setColor(Color.GREEN);
                    g.drawString("Draw Images",20,22);

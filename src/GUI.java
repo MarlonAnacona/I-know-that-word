@@ -19,6 +19,7 @@ public class GUI extends JFrame {
     private JTextArea areaTexto;
     private FileManager fileManager;
     private Escucha escucha;
+    private int palabrasaMandar;
     private Canvas canvas;
     private Timer timer, iniciar,selecionarConteo;
     public static String nombreUsario;
@@ -31,6 +32,7 @@ public class GUI extends JFrame {
     private modelWord niveles;
     private JButton jugar,ayuda,salir,si,no;
     private  int seleccionar=0;
+    private int counter3;
     /**
      * Constructor of GUI class
      */
@@ -64,6 +66,7 @@ public class GUI extends JFrame {
      * create Listener and control Objects used for the GUI class
      */
     private void initGUI() throws IOException {
+
 
         fileManager =new FileManager();
         niveles=new modelWord();
@@ -111,8 +114,8 @@ public class GUI extends JFrame {
         //initTimer.setVisible(false);
 
         iniciar = new Timer(1000,escucha);
-        timer = new Timer(5010,escucha);
-        selecionarConteo=new Timer(7000,escucha);
+        timer = new Timer(1000,escucha);
+        selecionarConteo=new Timer(2000,escucha);
         //timer.start();
 
 
@@ -153,6 +156,9 @@ public class GUI extends JFrame {
         public Escucha(){
             random = new Random();
             counter=0;
+
+            counter2=0;
+            counter3=0;
         }
 
 
@@ -163,10 +169,11 @@ public class GUI extends JFrame {
 
             if(e.getSource()==jugar){
 
-                iniciar.start();
+                //iniciar.start();
                 JOptionPane.showMessageDialog(null,"El juego iniciará");
+            timer.start();
             }
-
+/*
             if(e.getSource()==iniciar){
                 counter2++;
                 canvas.conteo(getGraphics(),counter2);
@@ -180,14 +187,17 @@ public class GUI extends JFrame {
             }else{
 
             }
+*/
 switch (nivel)
 {
     case 1:
+        palabrasaMandar=0;
         if(e.getSource()==timer){
 
-        counter++;
+            counter++;
          canvas.setStep(1);
          canvas.paintComponent(getGraphics());
+
          if(counter<=9){
 
             }else{
@@ -201,13 +211,23 @@ switch (nivel)
              ayuda.setVisible(false);
                 }
             }else{
-
-            timer.start();
          counter=0;
 
         }
         if(e.getSource()==selecionarConteo){
-            System.out.println("FUNCIONA");
+            canvas.setI(counter3);
+             counter3++;
+            canvas.setStep(4);
+
+            canvas.paintComponent(getGraphics());
+
+            if(counter3<=19){
+
+            }else{
+selecionarConteo.stop();
+            }
+        }else{
+            counter3=0;
         }
 
         break;
@@ -221,16 +241,35 @@ switch (nivel)
 
             }else{
                 timer.stop();
+                JOptionPane.showMessageDialog(null,"AHORA VAMOS A COMPROBAR LAS PALABRAS");
+                selecionarConteo.start();
+
                 si.setVisible(true);
                 no.setVisible(true);
                 jugar.setVisible(false);
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
-            counter=0;
 
-        }break;
+            counter=0;
+        }
+        if(e.getSource()==selecionarConteo){
+        canvas.setI(counter3);
+        counter3++;
+        canvas.setStep(4);
+
+        canvas.paintComponent(getGraphics());
+
+        if(counter3<=39){
+
+        }else{
+            selecionarConteo.stop();
+        }
+    }else{
+        counter3=0;
+    }
+
+        break;
     case 3:
         if(e.getSource()==timer){
 
@@ -247,10 +286,26 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
             counter=0;
 
-        }break;
+        }
+        if(e.getSource()==selecionarConteo){
+            canvas.setI(counter3);
+            counter3++;
+            canvas.setStep(4);
+
+            canvas.paintComponent(getGraphics());
+
+            if(counter3<=49){
+
+            }else{
+                selecionarConteo.stop();
+            }
+        }else{
+            counter3=0;
+        }
+
+        break;
     case 4:
         if(e.getSource()==timer){
 
@@ -267,10 +322,26 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
+
             counter=0;
 
-        }break;
+        }if(e.getSource()==selecionarConteo){
+        canvas.setI(counter3);
+        counter3++;
+        canvas.setStep(4);
+
+        canvas.paintComponent(getGraphics());
+
+        if(counter3<=59){
+
+        }else{
+            selecionarConteo.stop();
+        }
+    }else{
+        counter3=0;
+    }
+
+        break;
     case 5:
         if(e.getSource()==timer){
 
@@ -287,10 +358,27 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
+
             counter=0;
 
-        }break;
+        }
+        if(e.getSource()==selecionarConteo){
+            canvas.setI(counter3);
+            counter3++;
+            canvas.setStep(4);
+
+            canvas.paintComponent(getGraphics());
+
+            if(counter3<=69){
+
+            }else{
+                selecionarConteo.stop();
+            }
+        }else{
+            counter3=0;
+        }
+
+        break;
     case 6:
         if(e.getSource()==timer){
 
@@ -307,10 +395,25 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
             counter=0;
 
-        }break;
+        }
+        if(e.getSource()==selecionarConteo){
+            canvas.setI(counter3);
+            counter3++;
+            canvas.setStep(4);
+
+            canvas.paintComponent(getGraphics());
+
+            if(counter3<=79){
+
+            }else{
+                selecionarConteo.stop();
+            }
+        }else{
+            counter3=0;
+        }
+        break;
     case 7:
         if(e.getSource()==timer){
 
@@ -327,10 +430,26 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
+
             counter=0;
 
-        }break;
+        } if(e.getSource()==selecionarConteo){
+        canvas.setI(counter3);
+        counter3++;
+        canvas.setStep(4);
+
+        canvas.paintComponent(getGraphics());
+
+        if(counter3<=99){
+
+        }else{
+            selecionarConteo.stop();
+        }
+    }else{
+        counter3=0;
+    }
+
+        break;
     case 8:
         if(e.getSource()==timer){
 
@@ -347,10 +466,26 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
+
             counter=0;
 
-        }break;
+        }
+        if(e.getSource()==selecionarConteo){
+            canvas.setI(counter3);
+            counter3++;
+            canvas.setStep(4);
+
+            canvas.paintComponent(getGraphics());
+
+            if(counter3<=119){
+
+            }else{
+                selecionarConteo.stop();
+            }
+        }else{
+            counter3=0;
+        }
+        break;
     case 9:
         if(e.getSource()==timer){
 
@@ -367,9 +502,24 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
+
             counter=0;
 
+        }
+        if(e.getSource()==selecionarConteo){
+            canvas.setI(counter3);
+            counter3++;
+            canvas.setStep(4);
+
+            canvas.paintComponent(getGraphics());
+
+            if(counter3<=139){
+
+            }else{
+                selecionarConteo.stop();
+            }
+        }else{
+            counter3=0;
         }break;
     case 10:
         if(e.getSource()==timer){
@@ -387,10 +537,25 @@ switch (nivel)
                 ayuda.setVisible(false);
             }
         }else{
-            timer.start();
+
             counter=0;
 
-        }break;
+        } if(e.getSource()==selecionarConteo){
+        canvas.setI(counter3);
+        counter3++;
+        canvas.setStep(4);
+
+        canvas.paintComponent(getGraphics());
+
+        if(counter3<=199){
+
+        }else{
+            selecionarConteo.stop();
+        }
+    }else{
+        counter3=0;
+    }
+        break;
 
 }
 

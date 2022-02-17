@@ -20,15 +20,17 @@ public class GUI extends JFrame {
     private FileManager fileManager;
     private Escucha escucha;
     private Canvas canvas;
-    private Timer timer, iniciar;
+    private Timer timer, iniciar,selecionarConteo;
     public static String nombreUsario;
+    public static int nivel;
     private Font font;
     private JPanel palabras,botones;
     private Diccionario palabra;
     private JLabel fondo;
     private ImageIcon fondoimagen;
+    private modelWord niveles;
     private JButton jugar,ayuda,salir,si,no;
-
+    private  int seleccionar=0;
     /**
      * Constructor of GUI class
      */
@@ -64,12 +66,13 @@ public class GUI extends JFrame {
     private void initGUI() throws IOException {
 
         fileManager =new FileManager();
-
+        niveles=new modelWord();
         nombreUsario=JOptionPane.showInputDialog("Ingrese su usuario");
         setNombreUsuario(nombreUsario);
-        fileManager.subirNivel();
+      //  fileManager.subirNivel();
         fileManager.escribirUsuario(nombreUsario);
-        fileManager.buscarNivelUsuario(nombreUsario);
+        nivel=fileManager.buscarNivelUsuario(nombreUsario);
+        niveles.setNivelActual(nivel);
 
         header= new Header("FILE MANAGER",Color.black);
         this.add(header,BorderLayout.NORTH);
@@ -91,17 +94,25 @@ public class GUI extends JFrame {
         botones=new JPanel();
         botones.setBackground(Color.BLUE);
         jugar=new JButton("JUGAR");
+        si=new JButton("Si");
+        no=new JButton("No");
         ayuda=new JButton("AYUDA");
+
+        botones.add(si);
         botones.add(jugar);
         botones.add(ayuda);
+        botones.add(no);
+
+        this.si.setVisible(false);
+        this.no.setVisible(false);
         this.add(botones, BorderLayout.SOUTH);
 
         jugar.addActionListener(escucha);
         //initTimer.setVisible(false);
 
-         iniciar = new Timer(1000,escucha);
-        timer = new Timer(5000,escucha);
-
+        iniciar = new Timer(1000,escucha);
+        timer = new Timer(5010,escucha);
+        selecionarConteo=new Timer(7000,escucha);
         //timer.start();
 
 
@@ -169,23 +180,220 @@ public class GUI extends JFrame {
             }else{
 
             }
+switch (nivel)
+{
+    case 1:
+        if(e.getSource()==timer){
 
-            if(e.getSource()==timer){
+        counter++;
+         canvas.setStep(1);
+         canvas.paintComponent(getGraphics());
+         if(counter<=9){
 
-                counter++;
-                canvas.setStep(1);
-                canvas.paintComponent(getGraphics());
-                if(counter<=9){
-
-                }else{
-                    timer.stop();
-
+            }else{
+            timer.stop();
+            JOptionPane.showMessageDialog(null,"AHORA VAMOS A COMPROBAR LAS PALABRAS");
+            selecionarConteo.start();
+            seleccionar=1;
+            si.setVisible(true);
+            no.setVisible(true);
+             jugar.setVisible(false);
+             ayuda.setVisible(false);
                 }
             }else{
-                timer.start();
-                counter=0;
 
+            timer.start();
+         counter=0;
+
+        }
+        if(e.getSource()==selecionarConteo){
+            System.out.println("FUNCIONA");
+        }
+
+        break;
+    case 2:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=19){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
             }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 3:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=24){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 4:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=29){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 5:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=34){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 6:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=39){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 7:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=49){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 8:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=59){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 9:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=69){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+    case 10:
+        if(e.getSource()==timer){
+
+            counter++;
+            canvas.setStep(1);
+            canvas.paintComponent(getGraphics());
+            if(counter<=99){
+
+            }else{
+                timer.stop();
+                si.setVisible(true);
+                no.setVisible(true);
+                jugar.setVisible(false);
+                ayuda.setVisible(false);
+            }
+        }else{
+            timer.start();
+            counter=0;
+
+        }break;
+
+}
+
         }
         }
 }

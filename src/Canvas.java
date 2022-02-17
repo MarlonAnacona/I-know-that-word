@@ -5,6 +5,7 @@ public class Canvas extends JPanel {
     private String texto;
     private Font font;
     private int step;
+    public static String palabraQueSalio;
     private  Diccionario palabra=new Diccionario();
 
     public Canvas(){
@@ -28,7 +29,8 @@ public class Canvas extends JPanel {
         switch (step) {
 
             case 1: g.setColor(Color.RED);
-            g.drawString( this.palabra.getFrase(),150,150);
+            palabraQueSalio=this.palabra.getFrase();
+            g.drawString(palabraQueSalio,150,150);
             g.drawLine(150,155, 320,155);
         break;
             case 2:

@@ -170,7 +170,7 @@ public class FileManager {
             }
 
         }
-        System.out.println(nivelBuscado);
+
        return Integer.parseInt(nivelBuscado);
 
        }
